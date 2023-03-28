@@ -54,8 +54,11 @@ def load(
             "Checkpoint converted - feel free to delete the original '.pth' file (while keeping the 'arrow' folder)"
         )
 
-    with open(Path(ckpt_dir) / "params.json", "r") as f:
-        params = json.loads(f.read())
+    params_path = Path(ckpt_dir) / "params.json"
+    params = {}
+    if os.path.exists(params_path):
+        with open(params_path, "r") as f:
+            params = json.loads(f.read())
 
     random_seed = random.randint(1, 65534)
     torch.manual_seed(random_seed)
