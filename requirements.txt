@@ -1,0 +1,8 @@
+fire
+torch
+loralib
+pyarrow
+datasets
+sentencepiece
+git+https://github.com/huggingface/peft.git
+git+https://github.com/huggingface/transformers.git
