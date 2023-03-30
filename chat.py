@@ -126,7 +126,7 @@ def main(
                 ]
                 print("Response: ", end="")
             else:
-                queryInputs = [input("Enter your LLaMA prompt: ")]
+                queryInputs = [input("prompt: ")]
                 print("Thinking...")
             queryTime = time.time()
             results = generator.generate(

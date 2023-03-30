@@ -62,6 +62,28 @@ elif sys.argv[1] == "13B":
         "norm_eps": 1e-06,
         "vocab_size": -1,
     }
+elif sys.argv[1] == "13B-ko":
+    tokenizer = LlamaTokenizer.from_pretrained("decapoda-research/llama-13b-hf")
+    base_model = LlamaForCausalLM.from_pretrained(
+        "decapoda-research/llama-13b-hf",
+        load_in_8bit=False,
+        torch_dtype=torch.float16,
+        device_map={"": "cpu"},
+    )
+    lora_model = PeftModel.from_pretrained(
+        base_model,
+        "beomi/KoAlpaca-13B-LoRA",
+        device_map={"": "cpu"},
+        torch_dtype=torch.float16,
+    )
+    params = {
+        "dim": 5120,
+        "multiple_of": 256,
+        "n_heads": 40,
+        "n_layers": 40,
+        "norm_eps": 1e-06,
+        "vocab_size": -1,
+    }
 else:
     print("Run as: python3 export_state_dict_checkpoint.py 7B")
     print("     or python3 export_state_dict_checkpoint.py 13B")
@@ -149,4 +171,9 @@ elif sys.argv[1] == "13B":
     os.makedirs("models/13B-alpaca", exist_ok=True)
     torch.save(new_state_dict, "models/13B-alpaca/consolidated.00.pth")
     with open("models/13B-alpaca/params.json", "w") as f:
+        json.dump(params, f)
+elif sys.argv[1] == "13B-ko":
+    os.makedirs("models/13B-ko", exist_ok=True)
+    torch.save(new_state_dict, "models/13B-ko/consolidated.00.pth")
+    with open("models/13B-ko/params.json", "w") as f:
         json.dump(params, f)
