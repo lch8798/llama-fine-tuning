@@ -54,7 +54,7 @@ python3 clean_hf_cache.py
 **example of execution (hf)**
 
 ```bash
-python3 chat.py --use_hf --ckpt_dir chavinlo/alpaca-native --max_batch_size 8 --max_seq_len 256
+python3 chat_hf.py chavinlo/alpaca-native
 ```
 
 **example of execution (local model)**
