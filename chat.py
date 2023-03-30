@@ -21,10 +21,10 @@ import torch
 import random
 import pyarrow as pa
 from pathlib import Path
+from transformers import AutoTokenizer, AutoModelForCausalLM
 from llama import ModelArgs, Transformer, Tokenizer, LLaMA
 
-
-def load(
+def load_pth(
     ckpt_dir: str,
     tokenizer_path: str,
     max_seq_len: int,
@@ -93,9 +93,26 @@ def load(
     return generator
 
 
+def load_hf(
+    model_name: str,
+    max_seq_len: int,
+    max_batch_size: int,
+) -> LLaMA:
+    start_time = time.time()
+    print("Loading checkpoint")
+    
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name).to("mps")
+    model.params = ModelArgs(max_seq_len=max_seq_len, max_batch_size=max_batch_size)
+
+    generator = LLaMA(model, tokenizer)
+    print(f"Loaded in {time.time() - start_time:.2f} seconds")
+    return generator
+
+
 def main(
     ckpt_dir: str,
-    tokenizer_path: str,
+    tokenizer_path: str = None,
     temperature: float = 0.7,
     top_p: float = 0.75,
     use_repetition_penalty: bool = True,
@@ -104,11 +121,15 @@ def main(
     repetition_penalty: float = 1.15,
     max_seq_len: int = 512,
     max_batch_size: int = 1,
+    use_hf: bool = False,
 ):
-
-    generator = load(ckpt_dir, tokenizer_path, max_seq_len, max_batch_size)
+    generator = None
+    if use_hf:
+        generator = load_hf(ckpt_dir, max_seq_len, max_batch_size)
+    else:
+        generator = load_pth(ckpt_dir, tokenizer_path, max_seq_len, max_batch_size)
     
-    if 'B-alpaca' in ckpt_dir:
+    if 'alpaca' in ckpt_dir:
         alpaca_mode = True
         print("Running the fine-tuned 'alpaca' model in an instruction-response mode.")
     else:
