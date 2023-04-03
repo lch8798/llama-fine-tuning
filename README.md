@@ -62,3 +62,18 @@ python3 chat_hf.py chavinlo/alpaca-native
 ```bash
 python3 chat.py --ckpt_dir models/7B-alpaca --tokenizer_path models/tokenizer.model --max_batch_size 8 --max_seq_len 256
 ```
+
+---
+
+### Colab on VSCode
+
+`./connect_colab.ipynb`  
+Running on colab
+
+Execute in VSCode according to output instructions
+
+**_google drive path_**
+
+```bash
+/content/drive/MyDrive/
+```
