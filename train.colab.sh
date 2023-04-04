@@ -1,4 +1,4 @@
-torchrun --nproc_per_node=4 --master_port=34321 train.py \
+torchrun --nproc_per_node=1 --master_port=34321 train.py \
     --model_name_or_path "decapoda-research/llama-7b-hf" \
     --cache_dir "./models/decapoda-research/llama-7b-hf" \
     --data_path "./datasets/alpaca/ko.json" \
