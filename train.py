@@ -57,7 +57,6 @@ class DataArguments:
 
 @dataclass
 class TrainingArguments(transformers.TrainingArguments):
-    use_mps_device = True
     cache_dir: Optional[str] = field(default=None)
     optim: str = field(default="adamw_torch")
     model_max_length: int = field(
@@ -200,7 +199,6 @@ def train():
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
     )
-    model = model.to("mps")
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
