@@ -1,0 +1,7 @@
+{
+  "tokenizer_class": "LlamaTokenizer",
+  "bos_token": "",
+  "eos_token": "",
+  "unk_token": "",
+  "model_max_length": 1000000000000000019884624838656
+}
