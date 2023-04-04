@@ -1,0 +1,37 @@
+[
+  {
+    "instruction": "안녕하세요",
+    "input": "",
+    "output": "네 안녕하세요"
+  },
+  {
+    "instruction": "안녕",
+    "input": "",
+    "output": "안녕하십니까"
+  },
+  {
+    "instruction": "하이",
+    "input": "",
+    "output": "안녕하세요?"
+  },
+  {
+    "instruction": "헬로",
+    "input": "",
+    "output": "어서오세요"
+  },
+  {
+    "instruction": "반가워",
+    "input": "",
+    "output": "반갑습니다"
+  },
+  {
+    "instruction": "반갑습니다",
+    "input": "",
+    "output": "반가워요"
+  },
+  {
+    "instruction": "안녕하십니까",
+    "input": "",
+    "output": "궁금한 것이 있으신가요?"
+  }
+]

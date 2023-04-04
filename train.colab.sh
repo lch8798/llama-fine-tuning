@@ -2,9 +2,9 @@ torchrun --nproc_per_node=1 --master_port=34321 train.py \
     --model_name_or_path "decapoda-research/llama-7b-hf" \
     --tokenizer_path "./models" \
     --cache_dir "./models/decapoda-research/llama-7b-hf" \
-    --data_path "./datasets/alpaca/ko.json" \
+    --data_path "./datasets/alpaca/test.json" \
     --bf16 True \
-    --output_dir "./models/alpaca-7b-ko" \
+    --output_dir "./models/alpaca-7b-ko-test" \
     --num_train_epochs 3 \
     --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 4 \
