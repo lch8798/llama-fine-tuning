@@ -1,4 +1,4 @@
-# LLaMA Fine Tuning KO
+# LLaMA Fine Tuning
 
 **Install dependencies**
 
